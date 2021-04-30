@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .App-logo {
@@ -35,4 +38,12 @@
   to {
     transform: rotate(360deg);
   }
+}
+/* 
+.App {
+  background-image: url("./ERJ145Cockpit.png");
+} */
+
+.maxWidth70 {
+  max-width: 70% !important;
 }
