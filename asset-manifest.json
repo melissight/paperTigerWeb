@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/paperTigerWeb/static/css/main.575a3401.chunk.css",
+    "main.js": "/paperTigerWeb/static/js/main.6f7281c1.chunk.js",
+    "main.js.map": "/paperTigerWeb/static/js/main.6f7281c1.chunk.js.map",
+    "runtime-main.js": "/paperTigerWeb/static/js/runtime-main.273b6931.js",
+    "runtime-main.js.map": "/paperTigerWeb/static/js/runtime-main.273b6931.js.map",
+    "static/css/2.7c71f346.chunk.css": "/paperTigerWeb/static/css/2.7c71f346.chunk.css",
+    "static/js/2.2aaf16bc.chunk.js": "/paperTigerWeb/static/js/2.2aaf16bc.chunk.js",
+    "static/js/2.2aaf16bc.chunk.js.map": "/paperTigerWeb/static/js/2.2aaf16bc.chunk.js.map",
+    "static/js/3.12e27bf8.chunk.js": "/paperTigerWeb/static/js/3.12e27bf8.chunk.js",
+    "static/js/3.12e27bf8.chunk.js.map": "/paperTigerWeb/static/js/3.12e27bf8.chunk.js.map",
+    "index.html": "/paperTigerWeb/index.html",
+    "static/css/2.7c71f346.chunk.css.map": "/paperTigerWeb/static/css/2.7c71f346.chunk.css.map",
+    "static/css/main.575a3401.chunk.css.map": "/paperTigerWeb/static/css/main.575a3401.chunk.css.map",
+    "static/js/2.2aaf16bc.chunk.js.LICENSE.txt": "/paperTigerWeb/static/js/2.2aaf16bc.chunk.js.LICENSE.txt",
+    "static/media/ERJ145Cockpit.6283a16c.png": "/paperTigerWeb/static/media/ERJ145Cockpit.6283a16c.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.273b6931.js",
+    "static/css/2.7c71f346.chunk.css",
+    "static/js/2.2aaf16bc.chunk.js",
+    "static/css/main.575a3401.chunk.css",
+    "static/js/main.6f7281c1.chunk.js"
+  ]
+}
