@@ -1,4 +1,5 @@
 {
+  "homepage": "http://melissight.github.io/paperTigerWeb",
   "name": "paper-tiger-web",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +8,8 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "extract-text-webpack-plugin": "^3.0.2",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -16,9 +19,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
+    "build": "npm run build:webpack",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -37,5 +43,37 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-syntax-jsx": "^7.10.4",
+    "@babel/plugin-syntax-optional-chaining": "^7.8.3",
+    "@babel/polyfill": "^7.6.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "css-hot-loader": "^1.4.4",
+    "css-loader": "^3.6.0",
+    "eslint-plugin-react": "^7.16.0",
+    "file-loader": "^1.1.6",
+    "hard-source-webpack-plugin": "^0.13.1",
+    "mini-css-extract-plugin": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "open-browser-webpack4-plugin": "^1.0.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.23.3",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^2.3.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "url-loader": "^2.2.0",
+    "webpack": "4.44.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.8.2",
+    "workbox-webpack-plugin": "^4.3.1"
   }
 }
