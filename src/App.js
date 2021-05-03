@@ -126,11 +126,12 @@ function App() {
   return (
     <div className="App">
       <Container fluid>
+        <h4>After Start Flow - First Officer</h4>
         <Row>
-          <Col xs="9" className="maxWidth70">
+          <Col xs="9" className="maxWidth70 m-0 p-0">
             {ImageMapComponent}
           </Col>
-          <Col xs="3">
+          <Col xs="3" className="m-0 p-0">
             {_.map(flowSteps, (f, idx) => {
               return idx < currentStep ? <div key={`flowStep${idx}`} active={idx < currentStep}>{f}</div> : null
             })}
