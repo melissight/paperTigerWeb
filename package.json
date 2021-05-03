@@ -18,9 +18,11 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "watch": "webpack --mode development --watch",
     "start": "react-scripts start",
-    "build:webpack": "NODE_ENV=production webpack --config webpack.config.js",
-    "build": "npm run build:webpack",
+    "clean": "rimraf build",
+    "build:webpack": "webpack --mode production --config webpack.config.js",
+    "build": "npm run clean && npm run build:webpack",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",

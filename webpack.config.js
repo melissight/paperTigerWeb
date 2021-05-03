@@ -11,8 +11,9 @@ const OpenBrowserPlugin = require("open-browser-webpack4-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 module.exports = (env, options) => {
   const devMode = options.mode !== "production";
+  console.log("HHHHHHHHHHHHHHHHHHH", env, options)
   return {
-    mode: "development",
+    mode: options.mode || "development",
     optimization: {
       minimizer: [
         new TerserPlugin({ cache: true, parallel: true, sourceMap: devMode }),
@@ -22,7 +23,7 @@ module.exports = (env, options) => {
     },
     entry: ["./src/index.js"],
     output: {
-      path: path.join(__dirname, 'dist'),
+      path: path.join(__dirname, 'build'),
       filename: 'bundle.js',
       publicPath: '/static/'
     },
