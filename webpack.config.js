@@ -23,7 +23,7 @@ module.exports = (env, options) => {
     },
     entry: ["./src/index.js"],
     output: {
-      path: path.join(__dirname, 'build'),
+      path: '/',
       filename: 'bundle.js',
       publicPath: '/static/'
     },
