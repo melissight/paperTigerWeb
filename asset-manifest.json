@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/paperTigerWeb/static/css/main.575a3401.chunk.css",
-    "main.js": "/paperTigerWeb/static/js/main.abbdc1c4.chunk.js",
-    "main.js.map": "/paperTigerWeb/static/js/main.abbdc1c4.chunk.js.map",
+    "main.js": "/paperTigerWeb/static/js/main.a46d9041.chunk.js",
+    "main.js.map": "/paperTigerWeb/static/js/main.a46d9041.chunk.js.map",
     "runtime-main.js": "/paperTigerWeb/static/js/runtime-main.6a6d798d.js",
     "runtime-main.js.map": "/paperTigerWeb/static/js/runtime-main.6a6d798d.js.map",
     "static/css/2.e51b5edd.chunk.css": "/paperTigerWeb/static/css/2.e51b5edd.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.e51b5edd.chunk.css",
     "static/js/2.87e0fe8a.chunk.js",
     "static/css/main.575a3401.chunk.css",
-    "static/js/main.abbdc1c4.chunk.js"
+    "static/js/main.a46d9041.chunk.js"
   ]
 }
