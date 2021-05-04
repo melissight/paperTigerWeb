@@ -489,8 +489,6 @@ function App() {
   async function checkComplete() {
     if (completedSteps.length === currentFlow.steps.length) {
       const { data: gif } = await gf.random({ tag: 'airplane', rating: 'pg-13' })
-
-      console.log('gift', gif)
       setGifData(gif);
       setShowSuccess(true);
     }
