@@ -47,3 +47,12 @@
 .maxWidth70 {
   max-width: 70% !important;
 }
+
+.aviationBlueBackground {
+  background-color: #5570A4;
+}
+
+
+.textPrimaryBlue {
+  color: #5570A4 !important;
+}

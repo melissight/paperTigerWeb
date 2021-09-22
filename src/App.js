@@ -9,18 +9,28 @@ import {
   Modal,
   ModalBody,
   ModalHeader,
-  ModalFooter
+  ModalFooter,
+  Nav,
+  NavLink,
+  ListGroup,
+  ListGroupItem,
+  ListGroupItemHeading,
+  ListGroupItemText,
+  Card,
 } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import _ from "lodash";
 import embraer145 from "./ERJ145Cockpit.png";
+import cruzuluImg from "./wide_logo.png";
+import crewInAirport from "./crew_in_airport.png";
 import "./App.css";
-import { Gif } from '@giphy/react-components'
-import { GiphyFetch } from '@giphy/js-fetch-api'
+import { Gif } from "@giphy/react-components";
+import { GiphyFetch } from "@giphy/js-fetch-api";
 
 // create a GiphyFetch with your api key
 // apply for a new Web SDK key. Use a separate key for every platform (Android, iOS, Web)
 let giphyKey = "zP1KCyNvGTwDb2fCbTNQNH6soDPlilrk";
-const gf = new GiphyFetch(giphyKey)
+const gf = new GiphyFetch(giphyKey);
 
 const shedBus = {
   width: "6.662551440329217%",
@@ -286,7 +296,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: apuPanel.tagName
+        tagNameToMatch: apuPanel.tagName,
       },
       {
         flowText: (
@@ -319,7 +329,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: icePanel.tagName
+        tagNameToMatch: icePanel.tagName,
       },
       {
         flowText: (
@@ -340,7 +350,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: pneumaticsPanel.tagName
+        tagNameToMatch: pneumaticsPanel.tagName,
       },
       {
         flowText: (
@@ -350,7 +360,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: sterilePanel.tagName
+        tagNameToMatch: sterilePanel.tagName,
       },
       {
         flowText: (
@@ -365,7 +375,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: pfd2.tagName
+        tagNameToMatch: pfd2.tagName,
       },
       {
         flowText: (
@@ -380,7 +390,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: mfd2.tagName
+        tagNameToMatch: mfd2.tagName,
       },
       {
         flowText: (
@@ -399,7 +409,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: eicas.tagName
+        tagNameToMatch: eicas.tagName,
       },
       {
         flowText: (
@@ -414,7 +424,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: rmuPanel.tagName
+        tagNameToMatch: rmuPanel.tagName,
       },
       {
         flowText: (
@@ -435,7 +445,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: flaps.tagName
+        tagNameToMatch: flaps.tagName,
       },
       {
         flowText: (
@@ -450,7 +460,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: fms2.tagName
+        tagNameToMatch: fms2.tagName,
       },
       {
         flowText: (
@@ -465,7 +475,7 @@ const FLOWS = [
             </div>
           </Fragment>
         ),
-        tagNameToMatch: eicas.tagName
+        tagNameToMatch: eicas.tagName,
       },
     ],
     type: FLOW_TYPES.FO_FLOW,
@@ -488,7 +498,10 @@ function App() {
 
   async function checkComplete() {
     if (completedSteps.length === currentFlow.steps.length) {
-      const { data: gif } = await gf.random({ tag: 'airplane', rating: 'pg-13' })
+      const { data: gif } = await gf.random({
+        tag: "airplane",
+        rating: "pg-13",
+      });
       setGifData(gif);
       setShowSuccess(true);
     }
@@ -499,11 +512,14 @@ function App() {
   const onMapClick = (area, index) => {
     const tagToMatch = `${steps[index].tagNameToMatch}`;
     let counter = currentStep + 1;
-    if ((index === currentStep || counter === steps.length) && area.tagName === tagToMatch) {
+    if (
+      (index === currentStep || counter === steps.length) &&
+      area.tagName === tagToMatch
+    ) {
       // alert(tip);
       setCurrentStep(counter);
       let texts = completedSteps;
-      texts.push(steps[index].flowText)
+      texts.push(steps[index].flowText);
       setCompletedSteps(texts);
     } else {
       let counter = falseClicks + 1;
@@ -532,44 +548,263 @@ function App() {
     [mappedStep, embraer145]
   );
 
-  return (
-    <div className="App">
-      <Container fluid>
-        <Row>
-          <Col xs="9" className="maxWidth70 m-0 p-0">
-            <h3 className="mb-2 text-primary">After Start Flow - First Officer</h3>
-            {ImageMapComponent}
-          </Col>
-          <Col xs="3" className="m-0 p-0 text-left">
-            <Row>
-              <Col>
-                <ButtonGroup className="mb-2 float-right">
-                  <Button
-                    onClick={resetFlow}
-                    color="primary"
-                  >
-                    Start Over
-                  </Button>
-                  <Button
-                    onClick={checkComplete}
-                    color="success"
-                  >
-                    Complete Flow
-                  </Button>
-                </ButtonGroup>
-              </Col>
-            </Row>
-            <Row className="m-0 p-0">
-              <Col className="m-0 p-0">
-              {completedSteps && completedSteps.length > 0 && _.map(completedSteps, (stepText, idx) => {
-                return (
-                  <div key={`flowStep${idx}`}>{stepText}</div>
-                );
-              })}
+  const ConnectArea = (
+    <Fragment>
+      <Row className="pb-5">
+        <Col className="pb-5">
+          <Row className="m-2 mt-3 mb-5 bg-white py-3">
+            <Col xs="12" className="m-0 p-0">
+              <Row>
+                <Col className="ml-2">
+                  <h5 className="mb-2 textPrimaryBlue float-left">Connect</h5>
+                </Col>
+                <Col className="ml-2"></Col>
+              </Row>
+              <Row>
+                <Col className="ml-2">
+                  <ListGroup className="text-left">
+                    <ListGroupItem>
+                      <ListGroupItemHeading>10/12/2021</ListGroupItemHeading>
+                      <ListGroupItemText>
+                        No buddies sync with your schedule this day.
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListGroupItemHeading>Overnight</ListGroupItemHeading>
+                      <ListGroupItemText>
+                        <u className="text-primary">
+                          Things to do in Grand Rapids.
+                        </u>
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListGroupItemHeading>10/13/2021</ListGroupItemHeading>
+                      <ListGroupItemText>
+                        Operate GRR-PHL 6250 | 1140 - 1318
+                      </ListGroupItemText>
+                      <ListGroupItemText>
+                        <u className="text-primary">
+                          Eric Newman | Layover in PHL 1205 - 1400.
+                        </u>
+                      </ListGroupItemText>
+                      <ListGroupItemText>
+                        DH PHL - ROA 6122 | 1522- 1642
+                      </ListGroupItemText>
+                      <ListGroupItemText>
+                        <u className="text-primary">
+                          Sarah Angermann | Layover in ROA 1740 - 2100.
+                        </u>
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListGroupItemHeading>Overnight</ListGroupItemHeading>
+                      <ListGroupItemText>
+                        <u className="text-primary">Things to do in Roanoke.</u>
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                  </ListGroup>
+                </Col>
+              </Row>
             </Col>
           </Row>
+        </Col>
+      </Row>
+    </Fragment>
+  );
+
+  const FlowArea = (
+    <Fragment>
+      <Row className="pb-5 pr-5">
+        <Col className="pb-5">
+          <Row className="m-2 mt-3 mb-5 bg-white py-3">
+            <Col xs="9" className="m-0 p-0">
+              <Row>
+                <Col className="ml-2">
+                  <h5 className="mb-2 textPrimaryBlue float-left">
+                    After Start Flow - FO
+                  </h5>
+                </Col>
+                <Col className="ml-2"></Col>
+              </Row>
+
+              {ImageMapComponent}
+            </Col>
+            <Col xs="3" className="m-0 p-0 text-left">
+              <Row className="pr-2">
+                <Col>
+                  <ButtonGroup className="mb-2 float-right">
+                    <Button onClick={resetFlow} color="primary">
+                      Start Over
+                    </Button>
+                    <Button onClick={checkComplete} color="success">
+                      Complete Flow
+                    </Button>
+                  </ButtonGroup>
+                </Col>
+              </Row>
+              <Row className="m-0 p-0">
+                <Col className="m-0 p-0">
+                  {completedSteps &&
+                    completedSteps.length > 0 &&
+                    _.map(completedSteps, (stepText, idx) => {
+                      return <div key={`flowStep${idx}`}>{stepText}</div>;
+                    })}
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Fragment>
+  );
+  const ScheduleArea = (
+    <Fragment>
+      <Row className="pb-5">
+        <Col className="pb-5">
+          <Row className="m-2 mt-3 mb-5 bg-white py-3">
+            <Col xs="12" className="m-0 p-0">
+              <Row>
+                <Col className="ml-2">
+                  <h5 className="mb-2 textPrimaryBlue float-left">Schedule</h5>
+                </Col>
+                <Col className="ml-2 pl-3">
+                  <Button size="sm" className="float-right mr-2">
+                    <FontAwesomeIcon
+                      icon="calendar-plus"
+                      className="mr-2"
+
+                    />{" "}
+                    Sync
+                  </Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="ml-2">
+                  <ListGroup className="text-left">
+                    <ListGroupItem>
+                      <ListGroupItemHeading>
+                        10/12/2021
+                        <Button size="sm" className="float-right">
+                          Commuter Flights
+                        </Button>
+                      </ListGroupItemHeading>
+                      <ListGroupItemText>
+                        Base Report PHL | 0815
+                        <br />
+                        Operate PHL-GRR 6032 | 0915 - 1122
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListGroupItemHeading>
+                        Overnight
+                        <Button size="sm" className="float-right">
+                          Details
+                        </Button>
+                      </ListGroupItemHeading>
+                      <ListGroupItemText>
+                        Holiday Inn Grand Rapids
+                        <u className="text-primary float-right">616-285-7600</u>
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListGroupItemHeading>10/13/2021</ListGroupItemHeading>
+                      <ListGroupItemText>
+                        Report GRR | 0515
+                        <br />
+                        Operate GRR-PHL 6096 | 0600 - 0750
+                        <br />
+                        Operate PHL-DAY 6250 | 0905 - 1057
+                        <br />
+                        Operate DAY-PHL 6087 | 1140 - 1318
+                        <br />
+                        DH PHL-ROA 6122 | 1522 - 1642
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                    <ListGroupItem>
+                      <ListGroupItemHeading>
+                        Overnight
+                        <Button size="sm" className="float-right">
+                          Details
+                        </Button>
+                      </ListGroupItemHeading>
+                      <ListGroupItemText>
+                        Courtyard Marrior Roanoake
+                        <u className="text-primary float-right">540-563-5002</u>
+                      </ListGroupItemText>
+                    </ListGroupItem>{" "}
+                    <ListGroupItem>
+                      <ListGroupItemHeading>
+                        10/14/2021
+                        <Button size="sm" className="float-right">
+                          Commuter Flights
+                        </Button>
+                      </ListGroupItemHeading>
+                      <ListGroupItemText>
+                        Report ROA | 0715
+                        <br />
+                        Operate ROA-PHL 6332 | 0800 - 0915
+                      </ListGroupItemText>
+                    </ListGroupItem>
+                  </ListGroup>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Fragment>
+  );
+
+  const HomePage = (
+    <Fragment>
+      <img
+        src={crewInAirport}
+        alt="crew in airport"
+        style={{ height: "100vh", left: "-175vw", position: "absolute" }}
+      />
+      <Row className="justify-content-center" style={{ height: "650px" }}>
+        <Col className="text-center align-self-end" xs="8">
+          <Card className="aviationBlueBackground">
+            <h2 className="text-white">Home</h2>
+          </Card>
+        </Col>
+      </Row>
+    </Fragment>
+  );
+
+  return (
+    <div className="App aviationBlueBackground">
+      <Container fluid className="px-0">
+        <Row className="align-items-center bg-white px-3">
+          <Col className="p-0 m-0" xs="2">
+            <img
+              src={cruzuluImg}
+              alt="Cruzulu!"
+              style={{ height: "64px" }}
+              className="float-left"
+            />
+          </Col>
+          <Col xs="auto" />
+          <Col>
+            <Nav className="float-right">
+              {/* <NavLink>
+                <strong>Schedule</strong>
+              </NavLink>
+              <NavLink>
+                <u><strong>Connect</strong></u>
+              </NavLink> */}
+              <NavLink>
+                <strong>
+                  <FontAwesomeIcon icon="bars" className="textPrimaryBlue" />
+                </strong>
+              </NavLink>
+            </Nav>
           </Col>
         </Row>
+
+        {ConnectArea}
+        {/* {FlowArea} */}
+        {/* {ScheduleArea} */}
         {showSuccess && (
           <Modal isOpen={showSuccess}>
             <ModalHeader>Woohooo!!</ModalHeader>
